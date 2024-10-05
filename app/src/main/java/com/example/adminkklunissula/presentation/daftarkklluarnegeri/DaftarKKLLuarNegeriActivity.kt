@@ -62,9 +62,11 @@ class DaftarKKLLuarNegeriActivity : AppCompatActivity() {
         }
 
         // Fetch data dari Firestore
-        viewModel.fetchDaftarKKL()
+        viewModel.fetchDaftarKKL(COLLECTION)
 
     }
-
+    companion object {
+        const val COLLECTION = "daftar_KKLluarnegeri"
+    }
 
 }

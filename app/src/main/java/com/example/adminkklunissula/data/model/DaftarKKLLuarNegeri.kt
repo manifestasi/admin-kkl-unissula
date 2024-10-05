@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DaftarKKLLuarNegeri(
+    val documentId: String = "",
     val buktiUrl: String = "",
     val email: String = "",
     val fotoUrl: String = "",

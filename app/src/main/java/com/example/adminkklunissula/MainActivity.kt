@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.adminkklunissula.databinding.ActivityMainBinding
+import com.example.adminkklunissula.presentation.daftarkkldalamnegeri.DaftarKKLDalamNegeriActivity
 import com.example.adminkklunissula.presentation.daftarkklluarnegeri.DaftarKKLLuarNegeriActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLn.setOnClickListener {
             startActivity(Intent(this, DaftarKKLLuarNegeriActivity::class.java))
+        }
+        binding.btnDn.setOnClickListener {
+            startActivity(Intent(this, DaftarKKLDalamNegeriActivity::class.java))
         }
     }
 

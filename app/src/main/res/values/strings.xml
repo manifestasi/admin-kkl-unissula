@@ -11,9 +11,9 @@
     <string name="konfirmasi_password_anda">Konfirmasi password anda</string>
     <string name="register">Register</string>
     <string name="text_home_kkl">KULIAH KERJA LAPANGAN MAGISTER KENOTARIATAN FAKULTAS HUKUM UNISSULA SEMARANG</string>
-    <string name="text_card_1">DAFTAR MAHASISWA</string>
+    <string name="text_card_1">Daftar Mahasiswa KKL Luar Negeri</string>
     <string name="daftar">DAFTAR</string>
-    <string name="text_card_2">UPDATE STATUS MAHASISWA</string>
+    <string name="text_card_2">Daftar Mahasiswa KKL Dalam Negeri</string>
     <string name="text_card_3">DATA MAHASISWA YANG SUDAH TERDAFTAR</string>
     <string name="kklluarnegeri">Pendaftaran KKL Luar Negeri</string>
     <string name="Isidata">Isi Data Dibawah ini!</string>
@@ -60,4 +60,6 @@
     <string name="emptydalam">Anda belum melakukan pendaftaran untuk\nKKL Dalam Negeri</string>
     <string name="logout">Anda yakin ingin keluar?</string>
     <string name="name">Ahmad stefen van houten de light echeverie prince of belgium</string>
+    <string name="Setujui">Terima</string>
+    <string name="tolak">Tolak</string>
 </resources>
