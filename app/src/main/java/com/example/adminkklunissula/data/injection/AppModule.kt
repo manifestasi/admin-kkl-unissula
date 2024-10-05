@@ -1,4 +1,4 @@
-package com.example.adminkklunissula.data
+package com.example.adminkklunissula.data.injection
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

@@ -1,22 +1,19 @@
-package com.example.adminkklunissula
+package com.example.adminkklunissula.presentation.daftarkkldalamnegeri
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.adminkklunissula.databinding.ActivityMainBinding
-import com.example.adminkklunissula.presentation.daftarkklluarnegeri.DaftarKKLLuarNegeriActivity
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.adminkklunissula.R
+import com.example.adminkklunissula.databinding.ActivityDaftarKkldalamNegeriBinding
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDaftarKkldalamNegeriBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityDaftarKkldalamNegeriBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -24,9 +21,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnLn.setOnClickListener {
-            startActivity(Intent(this, DaftarKKLLuarNegeriActivity::class.java))
-        }
-    }
 
+    }
 }
