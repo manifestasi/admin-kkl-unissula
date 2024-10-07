@@ -28,10 +28,12 @@ class DaftarKKLLuarNegeriActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        binding.toolbar.tvTitlePage.text = getString(R.string.data_kkl_luar_negeri)
         binding.recyclerKklluar.layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this)[DaftarKKLLuarNegeriViewModel::class.java]
-
+        binding.toolbar.btnBack.setOnClickListener {
+            onBackPressed()
+        }
         // Observe LiveData dari ViewModel
         viewModel.daftarKKLList.observe(this) { resource ->
             when (resource) {

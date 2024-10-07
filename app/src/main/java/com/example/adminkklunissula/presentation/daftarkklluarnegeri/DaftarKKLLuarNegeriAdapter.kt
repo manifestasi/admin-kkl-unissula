@@ -38,7 +38,11 @@ class DaftarKKLLuarNegeriAdapter(
                 nama = data.nama,
                 nim = data.nim,
                 noHp = data.noHp,
-                smtKelas = data.smtKelas
+                smtKelas = data.smtKelas,
+                documentId = data.documentId,
+                kotaBerangkat = data.kotaBerangkat,
+                kotaPulang = data.kotaPulang,
+                pasporUrl = data.pasporUrl
             )
             binding.root.setOnClickListener {
                 val intent = Intent(binding.root.context, DetailKKLLuarNegeriActivity::class.java)

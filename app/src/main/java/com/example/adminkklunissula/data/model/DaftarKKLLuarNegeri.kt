@@ -9,11 +9,14 @@ data class DaftarKKLLuarNegeri(
     val buktiUrl: String = "",
     val email: String = "",
     val fotoUrl: String = "",
+    val pasporUrl: String = "",
     val jenisKelamin: String = "",
     val ktpUrl: String = "",
     val nama: String = "",
     val nim: String = "",
     val noHp: String = "",
-    val smtKelas: String = ""
+    val smtKelas: String = "",
+    val kotaBerangkat: String = "",
+    val kotaPulang: String = "",
 ) : Parcelable
 

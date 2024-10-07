@@ -30,6 +30,7 @@ class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        binding.toolbar.tvTitlePage.text = getString(R.string.data_kkl_dalam_negeri)
         binding.recyclerKklluar.layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this)[DaftarKKLLuarNegeriViewModel::class.java]
 
@@ -67,6 +68,9 @@ class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
         // Fetch data dari Firestore
         viewModel.fetchDaftarKKLDalamNegeri(COLLECTION)
 
+        binding.toolbar.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     companion object {

@@ -62,4 +62,6 @@
     <string name="name">Ahmad stefen van houten de light echeverie prince of belgium</string>
     <string name="Setujui">Terima</string>
     <string name="tolak">Tolak</string>
+    <string name="reject">Yakin ingin menolak pendaftaran ini?</string>
+    <string name="accept">Yakin ingin menerima pendaftaran ini?</string>
 </resources>

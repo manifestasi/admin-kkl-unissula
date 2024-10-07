@@ -37,6 +37,7 @@
     <com.google.android.material.progressindicator.CircularProgressIndicator
        android:id="@+id/progress_circular"
         android:visibility="gone"
+        app:indicatorColor="@color/green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
