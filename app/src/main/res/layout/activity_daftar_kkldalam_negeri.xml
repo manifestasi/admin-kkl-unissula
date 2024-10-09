@@ -9,6 +9,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/component_toolbar"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,7 +31,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/kklluar_negeri_item" />"/>
+                tools:listitem="@layout/kklluar_negeri_item" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

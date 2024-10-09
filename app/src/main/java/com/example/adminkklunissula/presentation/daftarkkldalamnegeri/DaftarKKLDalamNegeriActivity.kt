@@ -1,5 +1,6 @@
 package com.example.adminkklunissula.presentation.daftarkkldalamnegeri
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -9,17 +10,19 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adminkklunissula.R
+import com.example.adminkklunissula.data.model.DaftarKKLDalamNegeri
 import com.example.adminkklunissula.databinding.ActivityDaftarKkldalamNegeriBinding
-import com.example.adminkklunissula.presentation.daftarkklluarnegeri.DaftarKKLLuarNegeriAdapter
 import com.example.adminkklunissula.presentation.daftarkklluarnegeri.DaftarKKLLuarNegeriViewModel
 import com.example.adminkklunissula.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityDaftarKkldalamNegeriBinding
     private lateinit var daftarKKLAdapter: DaftarKKLDalamNegeriAdapter
     private lateinit var viewModel: DaftarKKLLuarNegeriViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,6 +54,15 @@ class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
                     resource.data?.let { daftarKKLList ->
                         daftarKKLAdapter = DaftarKKLDalamNegeriAdapter(daftarKKLList)
                         binding.recyclerKklluar.adapter = daftarKKLAdapter
+
+                        daftarKKLAdapter.setOnClickCallback(object : DaftarKKLDalamNegeriAdapter.OnItemClickCallback {
+                            override fun onItemClicked(data: DaftarKKLDalamNegeri) {
+                                val intent = Intent(this@DaftarKKLDalamNegeriActivity, DetailKKLDalamNegeriActivity::class.java)
+                                intent.putExtra("data", data)
+                                startActivity(intent)
+                            }
+
+                        })
                     }
                 }
 
@@ -71,6 +83,8 @@ class DaftarKKLDalamNegeriActivity : AppCompatActivity() {
         binding.toolbar.btnBack.setOnClickListener {
             onBackPressed()
         }
+
+
     }
 
     companion object {

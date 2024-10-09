@@ -1,9 +1,8 @@
 package com.example.adminkklunissula.presentation.daftarkkldalamnegeri
 
-import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminkklunissula.data.model.DaftarKKLDalamNegeri
 import com.example.adminkklunissula.databinding.KklluarNegeriItemBinding
@@ -11,6 +10,16 @@ import com.example.adminkklunissula.databinding.KklluarNegeriItemBinding
 class DaftarKKLDalamNegeriAdapter(
     private val daftarKKLList: List<DaftarKKLDalamNegeri>
 ) : RecyclerView.Adapter<DaftarKKLDalamNegeriAdapter.DaftarKKLViewHolder>() {
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: DaftarKKLDalamNegeri)
+    }
+
+    internal fun setOnClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarKKLViewHolder {
         val binding =KklluarNegeriItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,10 +33,21 @@ class DaftarKKLDalamNegeriAdapter(
         }
     }
 
-    class DaftarKKLViewHolder(private val binding: KklluarNegeriItemBinding) :
+    inner class DaftarKKLViewHolder(private val binding: KklluarNegeriItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: DaftarKKLDalamNegeri) {
             binding.tvName.text = data.nama
+
+            if(data.status == "1"){
+                binding.tvStatus.text = "Under Reviewed"
+                binding.tvStatus.setTextColor(Color.YELLOW)
+            } else if (data.status == "2"){
+                binding.tvStatus.text = "Accepted"
+                binding.tvStatus.setTextColor(Color.GREEN)
+            } else if (data.status == "3"){
+                binding.tvStatus.text = "Rejected"
+                binding.tvStatus.setTextColor(Color.RED)
+            }
 
             val currentData = DaftarKKLDalamNegeri(
                 buktiUrl = data.buktiUrl,
@@ -41,10 +61,8 @@ class DaftarKKLDalamNegeriAdapter(
                 smtKelas = data.smtKelas,
                 documentId = data.documentId
             )
-            binding.root.setOnClickListener {
-                val intent = Intent(binding.root.context, DetailKKLDalamNegeriActivity::class.java)
-                intent.putExtra("data", currentData)
-                binding.root.context.startActivity(intent)
+            itemView.setOnClickListener {
+                onItemClickCallback.onItemClicked(currentData)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.adminkklunissula.presentation.daftarkklluarnegeri
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adminkklunissula.R
+import com.example.adminkklunissula.data.model.DaftarKKLLuarNegeri
 import com.example.adminkklunissula.databinding.ActivityDaftarKklluarNegeriBinding
 import com.example.adminkklunissula.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +52,14 @@ class DaftarKKLLuarNegeriActivity : AppCompatActivity() {
                     resource.data?.let { daftarKKLList ->
                         daftarKKLAdapter = DaftarKKLLuarNegeriAdapter(daftarKKLList)
                         binding.recyclerKklluar.adapter = daftarKKLAdapter
+
+                        daftarKKLAdapter.setOnClickCallback(object : DaftarKKLLuarNegeriAdapter.OnItemClickCallback {
+                            override fun onItemClicked(data: DaftarKKLLuarNegeri) {
+                                val intent = Intent(this@DaftarKKLLuarNegeriActivity, DetailKKLLuarNegeriActivity::class.java)
+                                intent.putExtra("data", data)
+                                startActivity(intent)
+                            }
+                        })
                     }
                 }
                 is Resource.Error -> {

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "403713768834",
+    "project_id": "kklunissula",
+    "storage_bucket": "kklunissula.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403713768834:android:41ed5e99571d01784ea39b",
+        "android_client_info": {
+          "package_name": "com.example.adminkklunissula"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrVk6int97RMooVvTYiHK2zZr4hicT-B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403713768834:android:edf191056ed4eff84ea39b",
+        "android_client_info": {
+          "package_name": "com.manifestasi.mykklunissula"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrVk6int97RMooVvTYiHK2zZr4hicT-B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

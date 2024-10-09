@@ -14,6 +14,7 @@ data class DaftarKKLDalamNegeri(
     val nama: String = "",
     val nim: String = "",
     val noHp: String = "",
-    val smtKelas: String = ""
+    val smtKelas: String = "",
+    val status: String = ""
 ) : Parcelable
 
