@@ -1,8 +1,10 @@
 package com.example.adminkklunissula.presentation.daftarkkldalamnegeri
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -10,12 +12,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.adminkklunissula.R
 import com.example.adminkklunissula.data.model.DaftarKKLDalamNegeri
 import com.example.adminkklunissula.data.model.DaftarKKLLuarNegeri
 import com.example.adminkklunissula.databinding.ActivityDetailKkldalamNegeriBinding
+import com.example.adminkklunissula.databinding.CustomPopupDialogNoteRejectionBinding
 import com.example.adminkklunissula.presentation.daftarkklluarnegeri.DaftarKKLLuarNegeriViewModel
 import com.example.adminkklunissula.util.Resource
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,6 +30,8 @@ class DetailKKLDalamNegeriActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailKkldalamNegeriBinding
     private lateinit var viewModel: DaftarKKLLuarNegeriViewModel
     private var documentId: String? = null
+    private var note: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -74,7 +80,7 @@ class DetailKKLDalamNegeriActivity : AppCompatActivity() {
         }
 
         binding.btnTolak.setOnClickListener {
-            showConfirmDialog2(documentId)
+            showDialog()
         }
 
         observeUpdate()
@@ -136,7 +142,8 @@ class DetailKKLDalamNegeriActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             // Update data ke Firestore
             val data = mutableMapOf<String, Any>(
-                "status" to "3"
+                "status" to "3",
+                "note" to note
             )
 
             documentId?.let { id ->
@@ -150,6 +157,29 @@ class DetailKKLDalamNegeriActivity : AppCompatActivity() {
 
         dialog.show()
 
+    }
+
+    private fun showDialog(){
+        val dialogBinding = CustomPopupDialogNoteRejectionBinding.inflate(layoutInflater)
+        val dialog = MaterialAlertDialogBuilder(this@DetailKKLDalamNegeriActivity)
+            .setView(dialogBinding.root)
+            .setCancelable(false)
+            .create()
+
+        dialogBinding.btnSave.setOnClickListener {
+            showConfirmDialog2(documentId)
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.tilNote.editText?.doOnTextChanged { text, start, before, count ->
+            note = text.toString()
+        }
+
+        dialog.show()
     }
 
     private fun observeUpdate() {

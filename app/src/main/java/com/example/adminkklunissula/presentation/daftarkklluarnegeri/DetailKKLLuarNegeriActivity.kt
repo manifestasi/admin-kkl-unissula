@@ -10,11 +10,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.adminkklunissula.R
 import com.example.adminkklunissula.data.model.DaftarKKLLuarNegeri
 import com.example.adminkklunissula.databinding.ActivityDetailKklluarNegeriBinding
+import com.example.adminkklunissula.databinding.CustomPopupDialogNoteRejectionBinding
 import com.example.adminkklunissula.presentation.daftarkkldalamnegeri.DetailKKLDalamNegeriActivity.Companion.COLLECTION
 import com.example.adminkklunissula.util.Resource
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -25,6 +27,7 @@ class DetailKKLLuarNegeriActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailKklluarNegeriBinding
     private lateinit var viewModel: DaftarKKLLuarNegeriViewModel
     private var documentId: String? = null
+    private var note: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -79,11 +82,35 @@ class DetailKKLLuarNegeriActivity : AppCompatActivity() {
         }
 
         binding.btnTolak.setOnClickListener {
-            showConfirmDialog2(documentId)
+            showDialog()
         }
 
         observeUpdate()
     }
+
+    private fun showDialog(){
+        val dialogBinding = CustomPopupDialogNoteRejectionBinding.inflate(layoutInflater)
+        val dialog = MaterialAlertDialogBuilder(this@DetailKKLLuarNegeriActivity)
+            .setView(dialogBinding.root)
+            .setCancelable(false)
+            .create()
+
+        dialogBinding.btnSave.setOnClickListener {
+            showConfirmDialog2(documentId)
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.tilNote.editText?.doOnTextChanged { text, start, before, count ->
+            note = text.toString()
+        }
+
+        dialog.show()
+    }
+
     //fungsi untuk menampilkan loading data di awal
     private fun showLoading(isLoading: Boolean) {
         binding.progressindicator.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -139,7 +166,8 @@ class DetailKKLLuarNegeriActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             // Update data ke Firestore
             val data = mutableMapOf<String, Any>(
-                "status" to "3"
+                "status" to "3",
+                "note" to note
             )
 
             documentId?.let { id ->
