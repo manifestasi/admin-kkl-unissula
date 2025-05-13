@@ -2,6 +2,7 @@ package com.example.adminkklunissula.presentation.daftarkkldalamnegeri
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminkklunissula.data.model.DaftarKKLDalamNegeri
@@ -47,6 +48,13 @@ class DaftarKKLDalamNegeriAdapter(
             } else if (data.status == "3"){
                 binding.tvStatus.text = "Rejected"
                 binding.tvStatus.setTextColor(Color.RED)
+            }
+
+            if (data.status != "3"){
+                binding.tvNote.visibility = View.GONE
+            } else {
+                binding.tvNote.visibility = View.VISIBLE
+                binding.tvNote.text = data.note
             }
 
             val currentData = DaftarKKLDalamNegeri(

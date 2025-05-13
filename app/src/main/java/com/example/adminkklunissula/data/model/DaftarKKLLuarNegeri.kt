@@ -19,5 +19,6 @@ data class DaftarKKLLuarNegeri(
     val kotaBerangkat: String = "",
     val kotaPulang: String = "",
     val status: String = "",
+    val note: String = ""
 ) : Parcelable
 
